@@ -1,8 +1,20 @@
 {
-  "buildCommand": "pnpm build",
+  "buildCommand": "pnpm install && pnpm exec vite build --outDir dist/public",
   "outputDirectory": "dist/public",
   "framework": "vite",
   "cleanUrls": true,
+  "trailingSlash": false,
+  "headers": [
+    {
+      "source": "/(.*)",
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=3600, s-maxage=3600"
+        }
+      ]
+    }
+  ],
   "rewrites": [
     {
       "source": "/(.*)",
